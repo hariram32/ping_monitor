@@ -42,6 +42,6 @@ echo "plot 'data.dat' using (\$1 - 3*60*60):2:(1) t 'rtt' with boxes" >> $PLOT_F
 # Iniciamos o loop de coleta e render:
 while true
 do
-	tail -n 400 $RAWDATA | sed -r 's/\[([0-9]+)\.[0-9]+\] no answer.*/\1\t-10/' | sed -r 's/\[([0-9]+)\.[0-9]+\] 64 bytes.*time=(.*) ms/\1\t\2/' | sed -r 's/PING .* bytes of data.$//' | grep -E "^[0-9]+\s-?[0-9]+(?:\.[0-9])?" > $PLOT_DATA && gnuplot $PLOT_FILE
+	tail -n 300 $RAWDATA | sed -r 's/\[([0-9]+)\.[0-9]+\] no answer.*/\1\t-10/' | sed -r 's/\[([0-9]+)\.[0-9]+\] 64 bytes.*time=(.*) ms/\1\t\2/' | sed -r 's/PING .* bytes of data.$//' | grep -E "^[0-9]+\s-?[0-9]+(?:\.[0-9])?" > $PLOT_DATA && gnuplot $PLOT_FILE
 	sleep 10
 done
